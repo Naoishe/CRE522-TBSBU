@@ -8,6 +8,7 @@ public class Player : MonoBehaviour, Iinteractable
     private float privStamina=0;
     private string privName;
     private bool staminaDepleted;
+    public Collectable collectable;
 
     [SerializeField] public GameObject player;
 
@@ -116,5 +117,15 @@ public class Player : MonoBehaviour, Iinteractable
         //code
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ColOrb"))
+        {
+            collectable.currentCollectables++;
+
+        }
+    }
+
+  
+
 }

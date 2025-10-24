@@ -3,22 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class Collectable : Player
+public class Collectable : MonoBehaviour
 {
+    [SerializeField] GameObject player;
     public int currentCollectables;
     public Text scoreText;
 
     void Start()
     {
-        currentCollectables= 0;
+        currentCollectables = 0;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    private void Update()
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            currentCollectables=currentCollectables+1;
-            scoreText.text="Orbs: " + scoreText.ToString();
-        }
+        scoreText.text = currentCollectables.ToString();
     }
 }

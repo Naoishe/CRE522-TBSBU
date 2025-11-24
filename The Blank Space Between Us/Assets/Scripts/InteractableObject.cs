@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class InteractableObject : Player,Iinteractable
 {
-    public static Action OnInteractionEnabled; //Action currently unsused but put in for future development and additions like sound effects. NOT INVOKED ANYWHERE
+    
 
     public GameObject thisObject;
     public bool objectActive=false;

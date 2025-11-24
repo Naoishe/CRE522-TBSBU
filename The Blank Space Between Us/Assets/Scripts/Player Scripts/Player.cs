@@ -1,16 +1,29 @@
 using UnityEngine;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour 
 {
+
+    public static Action OnMinigameInput;
+    public static Action OnInteractionEnabled;
+
     delegate void PlayerDelegate();
     PlayerDelegate playerDelegate;
 
     private float privStamina=0;
     private string privName;
     private bool staminaDepleted;
+    private Vector2 playerLocation;
+    private ContactFilter2D contactFilter;
+    public float searchRadius=5;
 
     [SerializeField] public GameObject player;
+    public Collider2D[] collidingObjects;
     public GameObject currentlyInteractingObject;
+    private Vector2 currentObjectVector;
+    private float shortestDistance;
 
     [Header("Movement")]
     public float walkSpeed=5f;
@@ -57,12 +70,30 @@ public class Player : MonoBehaviour
         rb = player.GetComponent<Rigidbody2D>();
         playerDelegate += MyInput;
         playerDelegate += SpeedControl;
+        playerDelegate += PlayerButtons;
+        OnInteractionEnabled += InteractionCheck;
         playerCollectableCounter = 0;
     }
     public void Update()
     {
         playerDelegate();
+        playerLocation=this.transform.position;
 
+    }
+
+    public void PlayerButtons()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            OnInteractionEnabled?.Invoke();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            OnMinigameInput?.Invoke();
+        }
+        
+        
+        
     }
 
     public void FixedUpdate()
@@ -119,14 +150,10 @@ public class Player : MonoBehaviour
     public void InteractionCheck()
     {
         IORadiusCheck();
-        //if any interactable object found within radius, assign it to gameObjec
         if(currentlyInteractingObject != null)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                Debug.Log("Interaction Enabled On: "+gameObject.name);
-                currentlyInteractingObject.GetComponent<InteractableObject>().InteractionActivated(currentlyInteractingObject);
-            }
+            Debug.Log("Interaction Enabled On: " + gameObject.name);
+            currentlyInteractingObject.GetComponent<InteractableObject>().InteractionActivated(currentlyInteractingObject);
         }
         else
         {
@@ -137,7 +164,36 @@ public class Player : MonoBehaviour
 
     private void IORadiusCheck()
     {
-        ///undone
+        Physics2D.OverlapCircle(playerLocation, searchRadius, contactFilter, collidingObjects);
+        if (collidingObjects != null)
+        {
+            for (int i=0; i > collidingObjects.Length; i++)
+            {
+                if (i == 0)
+                {
+                    currentlyInteractingObject = collidingObjects[0].GetComponent<GameObject>();
+                    shortestDistance = Vector2.Distance(player.transform.position, currentlyInteractingObject.transform.position);
+                }
+                else
+                {
+                    currentObjectVector = collidingObjects[i].transform.position;
+                    float comparingDistance = Vector2.Distance(player.transform.position, currentObjectVector);
+                    if (comparingDistance < shortestDistance)
+                    {
+                        shortestDistance = comparingDistance;
+                        currentlyInteractingObject = collidingObjects[i].GetComponent<GameObject>();
+                    }
+                }
+                
+                
+            }
+        }
+        else
+        {
+            currentlyInteractingObject = null;
+        }
+        
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

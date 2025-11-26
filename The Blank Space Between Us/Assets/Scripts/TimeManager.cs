@@ -12,7 +12,12 @@ public class TimeManager : MonoBehaviour
     public static string[] TimeFrame = { "Morning", "Midday", "Early Evening", "Late Evening", "Night" };
     public static int Day; 
 
-    public static int TimeFrameIndex; 
+    public static int TimeFrameIndex;
+
+    /// <summary>
+    /// Day1 Variables
+    /// </summary>
+    private bool conditionsMet;
     void Start()
     {
         Day = 0;
@@ -29,16 +34,13 @@ public class TimeManager : MonoBehaviour
         OnTimeFrameChanged -= UpdateTimeFrame;
     }
 
-
     void Update()
     {
-        ///Temporary testing trigger for development to enable time updates:
-        if(Input.GetKeyUp(KeyCode.T))
+        /*if (conditionsMet)
         {
             OnTimeFrameChanged?.Invoke();
-        }
+        }*/
     }
-
 
     private void UpdateTimeFrame()
     {

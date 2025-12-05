@@ -1,16 +1,25 @@
 fileFormatVersion: 2
-guid: 2f67d784264de9744ac62f0d84436103
+guid: b60f356c06a1dad44a0a3f4463dbf698
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -415321450528740950
-    second: SpritePlayerV1_0
+      213: -233580546414945122
+    second: CharacterSprites-Player-Niko_0
   - first:
-      213: 5153144854389914160
-    second: SpritePlayerV1_1
+      213: -7184468994695065241
+    second: CharacterSprites-Player-Niko_1
   - first:
-      213: 6910958074434767104
-    second: SpritePlayerV1_2
+      213: 5052544571622307389
+    second: CharacterSprites-Player-Niko_2
+  - first:
+      213: 117766075199410870
+    second: CharacterSprites-Player-Niko_3
+  - first:
+      213: 7376302065452308102
+    second: CharacterSprites-Player-Niko_4
+  - first:
+      213: -2659397089367961489
+    second: CharacterSprites-Player-Niko_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,12 +115,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpritePlayerV1_0
+      name: CharacterSprites-Player-Niko_0
       rect:
         serializedVersion: 2
-        x: 13
+        x: 32
         y: 0
-        width: 38
+        width: 32
         height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -121,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aa962a9575b7c3af0800000000000000
-      internalID: -415321450528740950
+      spriteID: e9cde780bb722ccf0800000000000000
+      internalID: -233580546414945122
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpritePlayerV1_1
+      name: CharacterSprites-Player-Niko_1
       rect:
         serializedVersion: 2
-        x: 77
+        x: 64
         y: 0
-        width: 38
-        height: 62
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 03afa0a41f5a38740800000000000000
-      internalID: 5153144854389914160
+      spriteID: 7619467a383ab4c90800000000000000
+      internalID: -7184468994695065241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpritePlayerV1_2
+      name: CharacterSprites-Player-Niko_2
       rect:
         serializedVersion: 2
-        x: 141
+        x: 96
         y: 0
-        width: 38
-        height: 62
+        width: 32
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,8 +174,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0094d4cb0c7a8ef50800000000000000
-      internalID: 6910958074434767104
+      spriteID: d363063b48e3e1640800000000000000
+      internalID: 5052544571622307389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSprites-Player-Niko_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b25ad61f9362a100800000000000000
+      internalID: 117766075199410870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSprites-Player-Niko_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 686d34fa5a3ed5660800000000000000
+      internalID: 7376302065452308102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CharacterSprites-Player-Niko_5
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f60d383ff6ce71bd0800000000000000
+      internalID: -2659397089367961489
       vertices: []
       indices: 
       edges: []
@@ -175,7 +250,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 77ad38217ed6baf438f80099bb1c5bb5
+    spriteID: 3ce2f4539bb9f2946b55dc9338a79851
     internalID: 0
     vertices: []
     indices: 
@@ -185,9 +260,12 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SpritePlayerV1_0: -415321450528740950
-      SpritePlayerV1_1: 5153144854389914160
-      SpritePlayerV1_2: 6910958074434767104
+      CharacterSprites-Player-Niko_0: -233580546414945122
+      CharacterSprites-Player-Niko_1: -7184468994695065241
+      CharacterSprites-Player-Niko_2: 5052544571622307389
+      CharacterSprites-Player-Niko_3: 117766075199410870
+      CharacterSprites-Player-Niko_4: 7376302065452308102
+      CharacterSprites-Player-Niko_5: -2659397089367961489
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

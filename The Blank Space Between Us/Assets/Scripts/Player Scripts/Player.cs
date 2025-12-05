@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     private bool staminaDepleted;
     private Vector2 playerLocation;
     private ContactFilter2D contactFilter;
-    public float searchRadius=5;
+    public float searchRadius=10;
 
     [SerializeField] public GameObject player;
     public Collider2D[] collidingObjects;

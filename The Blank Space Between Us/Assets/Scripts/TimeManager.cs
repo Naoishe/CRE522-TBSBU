@@ -13,11 +13,9 @@ public class TimeManager : MonoBehaviour
     public static int Day; 
 
     public static int TimeFrameIndex;
+    private bool allowUpdates;
+    private GameObject CD;
 
-    /// <summary>
-    /// Day1 Variables
-    /// </summary>
-    private bool conditionsMet;
     void Start()
     {
         Day = 0;
@@ -27,6 +25,8 @@ public class TimeManager : MonoBehaviour
     private void OnEnable()
     {
         OnTimeFrameChanged += UpdateTimeFrame;
+        Day1Control.PreSceneChange += UpdateAndStoreTime;
+        Day1Control.NewSceneLoaded += NewSceneResets; 
     }
 
     private void OnDisable()
@@ -36,10 +36,13 @@ public class TimeManager : MonoBehaviour
 
     void Update()
     {
-        /*if (conditionsMet)
+        CD = GameObject.Find("ContinuousDataObj");
+        if (!allowUpdates)
         {
-            OnTimeFrameChanged?.Invoke();
-        }*/
+            TimeFrameIndex = ContinuousData.instance.CDtimeIndex;
+            Day = ContinuousData.instance.CDdayIndex;
+
+        }
     }
 
     private void UpdateTimeFrame()
@@ -56,5 +59,17 @@ public class TimeManager : MonoBehaviour
             TimeFrameIndex++;
         }
         
+    }
+
+    private void NewSceneResets()
+    {
+        allowUpdates= true;
+    }
+
+    public void UpdateAndStoreTime()
+    {
+        OnTimeFrameChanged?.Invoke();
+        allowUpdates = false;
+        ContinuousData.instance.UpdateSavedTime(TimeFrameIndex, Day);
     }
 }

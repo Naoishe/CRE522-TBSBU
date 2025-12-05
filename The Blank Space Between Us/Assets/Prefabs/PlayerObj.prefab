@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8007997344779839405}
   - component: {fileID: 8196730815688611139}
   - component: {fileID: 6033280505884746674}
+  - component: {fileID: 8426033150690135768}
   m_Layer: 0
   m_Name: PlayerObj
   m_TagString: Untagged
@@ -177,9 +178,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   searchRadius: 5
   player: {fileID: 6827672667090279466}
+  animator: {fileID: 8426033150690135768}
   collidingObjects: []
   currentlyInteractingObject: {fileID: 0}
   walkSpeed: 7
   sprintSpeed: 0
   isWalking: 0
   playerCollectableCounter: 0
+--- !u!95 &8426033150690135768
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6827672667090279466}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a410da1b35a0f5468505839c21d1de8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

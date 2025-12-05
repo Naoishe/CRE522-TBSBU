@@ -6,9 +6,11 @@ using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
 using Ink.Runtime;
 using UnityEngine.UI;
+using UnityEditor.Experimental.GraphView;
 
 public class TriggerDialogue : InteractableObject
 {
+    public static Action InteractionsComplete;
     public TextAsset inkFile;
     public GameObject textBox;
     public GameObject customButton;
@@ -74,6 +76,11 @@ public class TriggerDialogue : InteractableObject
         Debug.Log("End---");
         textBox.SetActive(false);
         allowDialogue = false;
+        ContinuousData.instance.UpdateInteractionCount();
+        if (ContinuousData.instance.interactionsHad >= 5)
+        {
+            InteractionsComplete?.Invoke();
+        }
 
     }
 

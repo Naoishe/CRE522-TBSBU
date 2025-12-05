@@ -22,36 +22,43 @@ public class DialogueManagerOriginal : MonoBehaviour
     static Choice choiceSelected;//The potential option/s in the story
     //private object element;
     private bool sentenceEnded;
+    private bool choicespresented;
   
     void Start()
     {
         story = new Story(inkFile.text);  
         tags =  new List<string>();
         choiceSelected = null;
+        choicespresented = false;
     }
 
     
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!choicespresented)
         {
-            //Checking if there is more of the story left
-            if (story.canContinue) //canContinue checks to see if there's more to the story
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                //nametag.text = "Professor:";
-                AdvanceDialogue();
-
-                ///checking if there is a choice
-                if (story.currentChoices.Count!=0)
+                //Checking if there is more of the story left
+                if (story.canContinue) //canContinue checks to see if there's more to the story
                 {
-                    StartCoroutine(ShowChoices());
+                    //nametag.text = "Professor:";
+                    AdvanceDialogue();
+
+                    ///checking if there is a choice
+                    if (story.currentChoices.Count != 0)
+                    {
+                        StartCoroutine(ShowChoices());
+                        choicespresented=true;
+                    }
+                }
+                else
+                {
+                    FinishDialogue();
                 }
             }
-            else
-            {
-                FinishDialogue();
-            }
         }
+        
     }
 
     private void FinishDialogue()
@@ -117,6 +124,7 @@ public class DialogueManagerOriginal : MonoBehaviour
             Destroy(optionPanel.transform.GetChild(i).gameObject);
         }
         choiceSelected = null;
+        choicespresented = false;
         AdvanceDialogue();
     }
 

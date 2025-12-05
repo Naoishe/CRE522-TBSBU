@@ -10,6 +10,8 @@ public class Day1Control : MonoBehaviour
 
     public static Action PreSceneChange;
     public static Action NewSceneLoaded;
+    public static Action ObjUpdate1;
+    public static Action ObjUpdate2;
 
     /// <summary>
     /// DEV NOTE: 
@@ -62,30 +64,17 @@ public class Day1Control : MonoBehaviour
     {
         player = GameObject.Find("PlayerObj");
         playerCollider = player.GetComponent<Collider2D>();
-        comparisonString = ContinuousData.instance.currentSceneName;
-        Debug.Log("STRING VALUE: "+comparisonString);
-        switch (comparisonString)
-        {
-            case "PlayerHouse":
-                interactingCollider = GameObject.Find("ExitCollider1").GetComponent<Collider2D>();
-                Debug.Log(" 1 ASSIGNED");
-                break;
-            case "CampusGrounds":
-                interactingCollider = GameObject.Find("ReturnCollider1").GetComponent<Collider2D>();
-                Debug.Log(" 2 ASSIGNED");
-                break;
-            case "Midday":
-                interactingCollider = GameObject.Find("debuggingCollider").GetComponent<Collider2D>();
-                Debug.Log(" 3 ASSIGNED");
-                break;
-            default:
-                Debug.Log("NONE ASSIGNED ");
-                break;
-        }
+        
         
     }
     void Update()
     {
+        if (ContinuousData.instance.interactionsHad == 5)
+        {
+            ObjUpdate2?.Invoke();
+        }
+        player = GameObject.Find("PlayerObj");
+        playerCollider = player.GetComponent<Collider2D>();
         if (ContinuousData.instance.currentSceneName == "PlayerHouse")
         {
             interactingCollider = GameObject.Find("ExitCollider1").GetComponent<Collider2D>();
@@ -96,7 +85,7 @@ public class Day1Control : MonoBehaviour
         }
         if (ContinuousData.instance.currentSceneName == "CampusGrounds")
         {
-            interactingCollider = GameObject.Find("ExitCollider1").GetComponent<Collider2D>();
+            interactingCollider = GameObject.Find("ReturnCollider1").GetComponent<Collider2D>();
         }
 
         //Variable check updates
@@ -106,29 +95,34 @@ public class Day1Control : MonoBehaviour
         {
             if(!disableCode)
             {
-                disableCode= true;
-                TimeManager.OnTimeFrameChanged?.Invoke();
-                PreSceneChange?.Invoke();
-                nextSceneString = "Midday";
-                StartCoroutine(SceneLoad());
+                if (ContinuousData.instance.currentSceneName == "PlayerHouse")
+                {
+                    disableCode = true;
+                    PreSceneChange?.Invoke();
+                    nextSceneString = "Midday";
+                    StartCoroutine(SceneLoad());
+                }
+                if (ContinuousData.instance.currentSceneName == "Midday")
+                {
+                    Debug.Log("Player shouldn't be here");
+
+                }
+                if (ContinuousData.instance.currentSceneName == "CampusGrounds" && ContinuousData.instance.interactionsHad >= 5)
+                {
+                    disableCode = true;
+                    PreSceneChange?.Invoke();
+                    nextSceneString = "PlayerHouse";
+                    StartCoroutine(SceneLoad());
+                }
             }
             
-        }
-       
-        if (Physics2D.IsTouching(interactingCollider, playerCollider)) //If the player is trying to cross the bridge in the uni campus scene and has completed all objectives necessary to do so.
-                                                                                        //(check if current scene is "CampusGrounds"), find this collider by name to allow script to run in all Day 1 scenes without reference error
-        {
-            TimeManager.OnTimeFrameChanged?.Invoke();
-            PreSceneChange?.Invoke();
-            nextSceneString = "PlayerHouse";
-            StartCoroutine(SceneLoad());
         }
 
     }
 
     public void ClassEnded()
     {
-        TimeManager.OnTimeFrameChanged?.Invoke();
+        
         PreSceneChange?.Invoke();
         nextSceneString = "CampusGrounds";
         StartCoroutine(SceneLoad());
@@ -138,10 +132,22 @@ public class Day1Control : MonoBehaviour
     {
         //Debug.Log("Loading delay... - 1.5s");
         yield return new WaitForSeconds(0f);
-
+        if (nextSceneString == "CampusGrounds")
+        {
+            StartCoroutine(ObjectiveLoad());
+        }
         SceneManager.LoadScene(nextSceneString);
         NewSceneLoaded?.Invoke();
         
+
+    }
+    IEnumerator ObjectiveLoad()
+    {
+        //Debug.Log("Loading delay... - 1.5s");
+        yield return new WaitForSeconds(3f);
+        ObjUpdate1?.Invoke();
+
+
 
     }
 

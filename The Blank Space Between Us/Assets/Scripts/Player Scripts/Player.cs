@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public float searchRadius=10;
 
     [SerializeField] public GameObject player;
+    [SerializeField] public Animator animator;
     public Collider2D[] collidingObjects;
     public GameObject currentlyInteractingObject;
     private Vector2 currentObjectVector;
@@ -106,6 +107,16 @@ public class Player : MonoBehaviour
         movementInput.y = Input.GetAxisRaw("Vertical");
 
         movementInput.Normalize();
+
+        if (movementInput.magnitude > 0)
+        {
+            animator.SetBool("isWalking", true);
+
+        }
+        else
+        {
+            animator.SetBool("isWalking",false);
+        }
     }
 
     public void MovePlayer()
@@ -113,6 +124,7 @@ public class Player : MonoBehaviour
         if(rb!= null)
         {
             rb.linearVelocity = movementInput * walkSpeed;
+            
         }
         else
         {

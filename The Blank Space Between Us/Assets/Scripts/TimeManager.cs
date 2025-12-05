@@ -15,11 +15,12 @@ public class TimeManager : MonoBehaviour
     public static int TimeFrameIndex;
     private bool allowUpdates;
     private GameObject CD;
+    public GameObject TimeGUI;
 
     void Start()
     {
-        Day = 0;
-        TimeFrameIndex= 0;
+        TimeGUI.SetActive(true);
+        
     }
 
     private void OnEnable()
@@ -52,7 +53,7 @@ public class TimeManager : MonoBehaviour
             TimeFrameIndex = 0;
             Day++;
             OnDayChanged?.Invoke();
-            Debug.Log("Current day:" + Day + " Current TimeframeIndex: " + TimeFrameIndex);
+            //Debug.Log("Current day:" + Day + " Current TimeframeIndex: " + TimeFrameIndex);
         }
         else
         {

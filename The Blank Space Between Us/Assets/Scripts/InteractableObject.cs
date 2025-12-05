@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class InteractableObject : Player,Iinteractable
+public class InteractableObject : EmptyMonoBehaviour, Iinteractable
 {
     
 

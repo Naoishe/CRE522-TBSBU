@@ -12,12 +12,16 @@ public class ContinuousData : MonoBehaviour
     public int CDdayIndex;
     public string currentSceneName;
     public int currentSceneBuildIndex;
+
+    public int interactionsHad;
     private void Awake()
     {
         instance = this;
         DontDestroyOnLoad(gameObject);
-        
-    }
+        CDtimeIndex = 0;
+        CDdayIndex = 0;
+        interactionsHad = 0;
+}
 
     private void OnEnable()
     {
@@ -44,6 +48,11 @@ public class ContinuousData : MonoBehaviour
     {
         CDtimeIndex = TimeManager.TimeFrameIndex;
         CDdayIndex = TimeManager.Day;
+    }
+
+    public void UpdateInteractionCount()
+    {
+        interactionsHad++;
     }
 
     

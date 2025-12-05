@@ -1,4 +1,4 @@
-using UnityEngine;
+/*using UnityEngine;
 using System.Collections;
 
 public class ButtonMash : InteractableObject
@@ -176,4 +176,4 @@ public class ButtonMash : InteractableObject
         playerScore=playerScore+(playerScore*percIncrement);
     }
 
-}
+}*/

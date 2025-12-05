@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 public class Player : MonoBehaviour 
 {
@@ -202,7 +203,20 @@ public class Player : MonoBehaviour
         }
         else
         {
-            currentlyInteractingObject = null;
+            //currentlyInteractingObject = null;
+            if (ContinuousData.instance.currentSceneName == "CampusGrounds")
+            {
+                currentlyInteractingObject = DetectionFix.Instance.closestChar;
+            }
+            else
+            {
+                currentlyInteractingObject = null;
+            }
+        }
+
+        if(currentlyInteractingObject==null && ContinuousData.instance.currentSceneName == "CampusGrounds")
+        {
+            currentlyInteractingObject=DetectionFix.Instance.closestChar;
         }
         
         

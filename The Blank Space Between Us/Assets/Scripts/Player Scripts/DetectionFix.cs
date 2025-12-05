@@ -1,4 +1,4 @@
-using Ink;
+
 using UnityEngine;
 
 public class DetectionFix : MonoBehaviour
@@ -15,6 +15,11 @@ public class DetectionFix : MonoBehaviour
         Instance = this;
     }
     private void Update()
+    {
+        Check();
+    }
+
+    public void Check()
     {
         for (int i = 0; i > characters.Length; i++)
         {

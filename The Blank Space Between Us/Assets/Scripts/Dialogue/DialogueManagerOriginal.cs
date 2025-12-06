@@ -1,15 +1,13 @@
 using Ink.Runtime;
-using Ink.UnityIntegration;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class DialogueManagerOriginal : MonoBehaviour
 {
-    public static Action DialogueScriptFinished;
-
     private TextAsset usedInkFile;
     public TextAsset MiddayinkFile;
     public TextAsset NikoinkFile;
@@ -23,6 +21,7 @@ public class DialogueManagerOriginal : MonoBehaviour
     public GameObject optionPanel;
     public bool isTalking = false;
     public Text message;
+    public bool changeFromClassToGameplay;
 
     static Story story; //main class that contains ink file and current state of the story
     //List<string> tags;
@@ -30,6 +29,7 @@ public class DialogueManagerOriginal : MonoBehaviour
     private bool choicespresented;
     //private bool dialogueEnabled;
     private bool classScene;
+    
   
     void Start()
     {
@@ -38,6 +38,7 @@ public class DialogueManagerOriginal : MonoBehaviour
         choiceSelected = null;
         choicespresented = false;
         classScene = false;
+        changeFromClassToGameplay = false;
     }
 
     
@@ -74,7 +75,7 @@ public class DialogueManagerOriginal : MonoBehaviour
         //Debug.Log("End---");
         if (classScene)
         {
-            DialogueScriptFinished?.Invoke();
+            changeFromClassToGameplay=true;
         }
         //dialogueEnabled = false;
         textBox.SetActive(false);

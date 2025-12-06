@@ -390,6 +390,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7175141674815753215, guid: c0cd98b00909a234fa6d1e3b5d10a565, type: 3}
+      propertyPath: TimeGUI
+      value: 
+      objectReference: {fileID: 1803931590}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -64868,6 +64872,11 @@ PrefabInstance:
 --- !u!224 &1803931589 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2156911268828892080, guid: 48216b361ab0ce540ae6c0d867fdb815, type: 3}
+  m_PrefabInstance: {fileID: 1803931588}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1803931590 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 135394673408894107, guid: 48216b361ab0ce540ae6c0d867fdb815, type: 3}
   m_PrefabInstance: {fileID: 1803931588}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1831852182

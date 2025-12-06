@@ -1,8 +1,5 @@
 using UnityEngine;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 public class Player : MonoBehaviour 
 {
@@ -85,10 +82,10 @@ public class Player : MonoBehaviour
 
     public void PlayerButtons()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        /*if (Input.GetKeyDown(KeyCode.E))
         {
             OnInteractionEnabled?.Invoke();
-        }
+        }*/
         if (Input.GetKeyDown(KeyCode.M))
         {
             OnMinigameInput?.Invoke();

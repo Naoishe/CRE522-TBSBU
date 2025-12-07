@@ -32,6 +32,7 @@ public class Day1Control : MonoBehaviour
     public string playerName;
 
     private string comparisonString;
+    private int preventClassEndedMethod;
 
 
     /// <summary>
@@ -42,11 +43,12 @@ public class Day1Control : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         disableCode = false;
+        preventClassEndedMethod = 0;
     }
 
     private void OnEnable()
     {
-        DialogueManagerOriginal.DialogueScriptFinished += ClassEnded; 
+        
         NewSceneLoaded += ResetBool;
         NewSceneLoaded += InitialisePlayer;
         NewSceneLoaded += ObjectiveLoad;
@@ -54,7 +56,7 @@ public class Day1Control : MonoBehaviour
 
     private void OnDisable()
     {
-        DialogueManagerOriginal.DialogueScriptFinished -= ClassEnded;
+        
         NewSceneLoaded -= ResetBool;
         NewSceneLoaded -= InitialisePlayer;
         NewSceneLoaded -= ObjectiveLoad;
@@ -107,7 +109,7 @@ public class Day1Control : MonoBehaviour
                     Debug.Log("Player shouldn't be here");
 
                 }
-                if (ContinuousData.instance.currentSceneName == "CampusGrounds" && ContinuousData.instance.interactionsHad >= 5)
+                if (ContinuousData.instance.currentSceneName == "CampusGrounds")
                 {
                     disableCode = true;
                     PreSceneChange?.Invoke();
@@ -117,14 +119,27 @@ public class Day1Control : MonoBehaviour
             }
             
         }
+        if (ContinuousData.instance.currentSceneName == "Midday")
+        {
+            if (GameObject.Find("DialogueManager").GetComponent<DialogueManagerOriginal>().changeFromClassToGameplay && preventClassEndedMethod == 0)
+            {
+                ClassEnded();
+            }
+        }
+        
 
     }
 
     public void ClassEnded()
     {
-        
-        PreSceneChange?.Invoke();
+        preventClassEndedMethod++;
         nextSceneString = "CampusGrounds";
+        BufferMethod();
+    }
+
+    private void BufferMethod()
+    {
+        PreSceneChange?.Invoke();
         StartCoroutine(SceneLoad());
     }
 

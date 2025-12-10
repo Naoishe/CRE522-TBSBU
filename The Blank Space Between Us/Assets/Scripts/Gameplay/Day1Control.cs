@@ -107,7 +107,7 @@ public class Day1Control : MonoBehaviour
                     Debug.Log("Player shouldn't be here");
 
                 }
-                if (ContinuousData.instance.currentSceneName == "CampusGrounds" && ContinuousData.instance.interactionsHad >= 5)
+                if (ContinuousData.instance.currentSceneName == "CampusGrounds")
                 {
                     disableCode = true;
                     PreSceneChange?.Invoke();
